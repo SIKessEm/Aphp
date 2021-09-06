@@ -1,2 +1,2 @@
 # Aphp
-Awesome Docker image for PHP and Apache
+Awesome app for PHP with Apache
