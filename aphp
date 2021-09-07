@@ -1,0 +1,50 @@
+#!/bin/bash
+# Awesome application with Apache, PHP and PostgreSQL
+
+app='Aphp'
+
+if [[ -z $1 ]]; then
+  cat <<DASHBOARD
+Welcome to $app CLI
+
+Usage:
+  bash aphp <command>
+
+Command:
+  up                    Start $app Docker container
+  down                  Stop $app Docker container
+
+DASHBOARD
+exit
+fi
+
+if [[ -n $2 ]]; then
+  container=$2
+else
+  container='aphp-runtime'
+fi
+
+case $1 in
+  'up')
+    if [[ -n $3 ]]; then
+      image=$3
+      docker build -t "$image" .
+      docker run --name "$container" -p '80:80' "$image"
+    else
+      docker start "$container"
+    fi
+  ;;
+  'down')
+    docker stop "$container"
+    docker rm "$container"
+    if [[ -n $3 ]]; then
+      image=$3
+      docker rmi $image
+    fi
+  ;;
+  *)
+    echo "Unknown command $1"
+    exit 1
+  ;;
+esac
+exit
