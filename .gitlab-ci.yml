@@ -30,9 +30,9 @@ base:
   stage: sys
   image: postgres:13.4
   variables:
-    POSTGRES_PASSWORD: Aphp-1.0|DevOps
-    POSTGRES_USER: SIKessEm
     POSTGRES_DB: aphp
+    POSTGRES_USER: SIKessEm
+    POSTGRES_PASSWORD: Aphp-1.0|DevOps
     POSTGRES_HOST_AUTH_METHOD: trust
   script:
     - export PGPASSWORD=$POSTGRES_PASSWORD
