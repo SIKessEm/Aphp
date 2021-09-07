@@ -1,0 +1,5 @@
+
+#!/usr/bin/env php
+<?php
+echo "Serve the response to an HTTP request" . PHP_EOL;
+exit;
