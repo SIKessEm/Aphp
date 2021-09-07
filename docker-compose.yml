@@ -1,0 +1,12 @@
+version: "3.7"
+services:
+  web:
+    build: .
+    container_name: aphp-runtime
+    ports:
+      - "80:80"
+      - "443:443"
+      - "5432:5432"
+    volumes:
+      - ./:/var/www/html/
+      - /var/lib/postgres/data/
