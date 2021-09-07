@@ -1,4 +1,7 @@
+image: php:8.0-apache
+
 stages:
+  - sys
   - app
 
 before_script:
@@ -11,24 +14,20 @@ after_script:
   - git --version
 
 site:
-  stage: app
-  image: php:8.0-apache
-
+  stage: sys
   cache:
     paths:
       - pkg/
-
   script:
     - apt-get install -yqq libpq-dev libcurl4-gnutls-dev libicu-dev libvpx-dev libjpeg-dev libpng-dev libxpm-dev zlib1g-dev libfreetype6-dev libxml2-dev libexpat1-dev libbz2-dev libgmp3-dev libldap2-dev unixodbc-dev libsqlite3-dev libaspell-dev libsnmp-dev libpcre3-dev libtidy-dev libonig-dev libzip-dev
     - docker-php-ext-install mbstring pdo_pgsql curl intl gd xml zip bz2 opcache
     - curl -sS https://getcomposer.org/installer | php
     - php composer.phar install
-
   services:
     - postgres:13.4
 
 base:
-  stage: app
+  stage: sys
   image: postgres:13.4
   variables:
     POSTGRES_PASSWORD: Aphp-1.0|DevOps
@@ -39,6 +38,7 @@ base:
     - psql -h "postgres" -U "$POSTGRES_USER" -d "$POSTGRES_DB" -c "SELECT 'OK' AS status;"
 
 test:
+  stage: app
   script:
     - php cli/fetch
     - php cli/serve
