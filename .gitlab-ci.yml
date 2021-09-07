@@ -13,6 +13,12 @@ after_script:
   - vim --version
   - git --version
 
+variables:
+  POSTGRES_DB: aphp
+  POSTGRES_USER: SIKessEm
+  POSTGRES_PASSWORD: Aphp-1.0|DevOps
+  POSTGRES_HOST_AUTH_METHOD: trust
+
 site:
   stage: sys
   cache:
@@ -23,11 +29,6 @@ site:
     - docker-php-ext-install mbstring pdo_pgsql curl intl gd xml zip bz2 opcache
     - curl -sS https://getcomposer.org/installer | php
     - php composer.phar install
-  variables:
-    POSTGRES_DB: aphp
-    POSTGRES_USER: SIKessEm
-    POSTGRES_PASSWORD: Aphp-1.0|DevOps
-    POSTGRES_HOST_AUTH_METHOD: trust
   services:
     - postgres:13.4
 
