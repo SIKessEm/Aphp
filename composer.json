@@ -1,0 +1,44 @@
+{
+    "name": "sikessem/aphp",
+    "type": "project",
+    "version": "1.0.0",
+    "description": "Awesome application with Apache, PHP and PostgreSQL",
+    "license": "Apache-2.0",
+    "keywords": [
+        "aphp",
+        "sikessem",
+        "php",
+        "apache",
+        "postegres"
+    ],
+    "authors": [{
+        "homepage": "https://sikessem.com/",
+        "name": "SIGUI Kessé Emmanuel",
+        "email": "contact@sikessem.com",
+        "role": "Developer"
+    }],
+    "support": {
+        "source": "https://github.com/SIKessEm/Aphp",
+        "issues": "https://github.com/SIKessEm/Aphp/issues"
+    },
+    "require": {
+        "php": ">=8.0"
+    },
+    "autoload": {
+        "files": [
+            "ext/sikessem-aphp.php"
+        ],
+        "psr-4": {
+          "SIKessEm\\Aphp\\": "lib/"
+        }
+    },
+    "homepage": "https://github.com/SIKessEm/Aphp#readme",
+    "config": {
+    	"vendor-dir": "pkg",
+        "bin-dir": "cli",
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
