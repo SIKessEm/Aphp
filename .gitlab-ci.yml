@@ -19,6 +19,9 @@ variables:
   POSTGRES_PASSWORD: Aphp-1.0|DevOps
   POSTGRES_HOST_AUTH_METHOD: trust
 
+services:
+  - postgres:13.4
+
 site:
   stage: sys
   cache:
@@ -29,8 +32,6 @@ site:
     - docker-php-ext-install mbstring pdo_pgsql curl intl gd xml zip bz2 opcache
     - curl -sS https://getcomposer.org/installer | php
     - php composer.phar install
-  services:
-    - postgres:13.4
 
 base:
   stage: sys
